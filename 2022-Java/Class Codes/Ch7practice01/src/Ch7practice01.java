@@ -1,34 +1,37 @@
 class Point {
     private int xPos, yPos;
 
-    // const
-    public Point(int x, int y) {
+    public Point(int x, int y) { // const
         xPos = x;
         yPos = y;
     }
-
     public void showPointInfo() {
-        System.out.println("x: " + xPos + "  y: " + yPos);
+        System.out.println("x: " + xPos);
+        System.out.println("y: " + yPos);
     }
 }
 
 class Circle {
-    private final double PI = 3.14;
-    private Point location;
-    private double area;
-    private double len;
+    private final double PI = 3.1415;
+    private double rad;
+    private Point center;
 
-    // const
-    public Circle(int x, int y, double r) {
-        location = new Point(x, y);
-        area = r * r * PI;
-        len = 2 * r * PI;
+    public Circle(int x, int y, double r) { // const
+        center = new Point(x, y);
+        rad = r;
     }
-
+    public double getArea() {
+        return PI*rad*rad;
+    }
+    public double getPeri() {
+        return PI*2*rad;
+    }
     public void showCircleInfo() {
-        location.showPointInfo();
-        System.out.println("area is " + area);
-        System.out.println("len is " + len);
+        System.out.println("** Circle Information **");
+        center.showPointInfo();
+        System.out.println("Radius : " + rad);
+        System.out.println("Area : " + getArea());
+        System.out.println("Perimeter : " + getPeri());
     }
 }
 

@@ -76,10 +76,19 @@ class AccountMenu {
         System.out.println();
         go();
     }
-    // 사용자로부터 금액 입력
+    // 사용자로부터 금액 입력, 단 >0 이어야 함
     private int setAmount(){
-        System.out.print("How much do you want [menu"+ menu + "] ");
-        return sc.nextInt();
+        while(true) {
+            System.out.print("How much do you want [menu"+ menu + "] ");
+            int tmp = sc.nextInt();
+            if(tmp > 0) {
+                return tmp;      
+            }
+            else {
+                System.out.println("Amount must be greater than 0. Please enter again.");
+                continue;
+            }
+        }
     }
 }
 
@@ -106,9 +115,11 @@ class BankAccount {
         balance += amount;
     }
     public void withdraw(int amount) {
-        if (balance >= amount) {     
+        // 잔액이 출금액보다 적을 경우 입력 방지.
+        if(balance >= amount) {
             balance -= amount;
-        } else {                // 잔액 >= 출금액
+        }
+        else {
             System.out.println("Balance is not enough");
             System.out.println("Current balance: " + balance);
         }
